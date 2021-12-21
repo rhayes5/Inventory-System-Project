@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifyProductController">
+   <children>
+      <Pane layoutX="37.0" layoutY="26.0" style="-fx-border-color: black; -fx-border-radius: 10;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Label focusTraversable="false" layoutX="33.0" layoutY="29.0" text="Modify Product">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <VBox layoutX="55.0" layoutY="92.0" prefHeight="276.0" prefWidth="262.0">
+               <children>
+                  <GridPane hgap="10.0" prefHeight="80.0" prefWidth="204.0" vgap="10.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="45.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="211.0" minWidth="10.0" prefWidth="158.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label focusTraversable="false" text="ID" />
+                        <Label focusTraversable="false" text="Name" GridPane.rowIndex="1" />
+                        <TextField fx:id="idField" disable="true" editable="false" focusTraversable="false" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets right="50.0" />
+                     </VBox.margin>
+                  </GridPane>
+                  <GridPane hgap="10.0" vgap="10.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="72.0" minWidth="10.0" prefWidth="45.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="6.0" prefWidth="72.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.0" minWidth="10.0" prefWidth="41.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="75.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Inv" />
+                        <Label text="Price" GridPane.rowIndex="1" />
+                        <Label text="Max" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="29.0" text="Min" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="invTextField" GridPane.columnIndex="1" />
+                        <TextField fx:id="priceTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="maxTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="minTextField" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </GridPane>
+               </children>
+            </VBox>
+            <TextField fx:id="searchTextField" layoutX="577.0" layoutY="25.0" onKeyTyped="#onKeyTypedPartSearch" prefHeight="25.0" prefWidth="156.0" promptText="Search by Part ID or Name" />
+            <VBox alignment="TOP_RIGHT" layoutX="398.0" layoutY="65.0" prefHeight="381.0" prefWidth="335.0" spacing="15.0">
+               <children>
+                  <TableView fx:id="partsTable" focusTraversable="false" prefHeight="138.0" prefWidth="335.0">
+                    <columns>
+                      <TableColumn fx:id="partIdColumn" prefWidth="47.0" text="Part ID" />
+                      <TableColumn fx:id="partNameColumn" prefWidth="78.0" text="Part Name" />
+                        <TableColumn fx:id="invColumn" prefWidth="93.0" text="Inventory Level" />
+                        <TableColumn fx:id="priceColumn" prefWidth="116.0" text="Price/Cost per Unit" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="addBtn" mnemonicParsing="false" onAction="#onActionAddAssociatedPart" text="Add">
+                     <VBox.margin>
+                        <Insets right="15.0" />
+                     </VBox.margin>
+                  </Button>
+                  <TableView fx:id="addedPartsTable" focusTraversable="false" prefHeight="138.0" prefWidth="335.0">
+                     <columns>
+                        <TableColumn fx:id="addedPartIdColumn" prefWidth="47.0" text="Part ID" />
+                        <TableColumn fx:id="addedPartNameColumn" prefWidth="78.0" text="Part Name" />
+                        <TableColumn fx:id="addedInvColumn" prefWidth="93.0" text="Inventory Level" />
+                        <TableColumn fx:id="addedPriceColumn" prefWidth="116.0" text="Price/Cost per Unit" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="removeAssociatedPartBtn" mnemonicParsing="false" onAction="#onActionRemoveAssociatedPart" text="Remove Associated Part">
+                     <VBox.margin>
+                        <Insets right="15.0" />
+                     </VBox.margin>
+                  </Button>
+                  <HBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="152.0" spacing="20.0">
+                     <children>
+                        <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#onActionSaveProduct" prefHeight="25.0" prefWidth="55.0" text="Save" />
+                        <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#onActionCancel" prefHeight="25.0" prefWidth="55.0" text="Cancel" />
+                     </children>
+                     <VBox.margin>
+                        <Insets right="20.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
